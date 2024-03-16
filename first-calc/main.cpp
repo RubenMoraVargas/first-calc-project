@@ -43,6 +43,26 @@ static int getChoiceByUser() {
 	return choice;
 }
 
+
+static int getNumberByUser() {
+	int number;
+	bool isValid = false;
+	while (!isValid) {
+		cout << "Ingrese un numero valido: ";
+		cin >> number;
+
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Numero no valido. Por favor, intente de nuevo.\n"; 
+		}
+		else {
+			isValid = true;
+		}
+		
+	}
+	return number;
+}
 static void testAdd() {
 	int result1 = add(4, 6);
 	cout << "Prueba #1, la suma es: " << result1 << endl;
@@ -98,16 +118,22 @@ static bool executeChoice(int userChoice) {
 }
 
 int main() {
-	int userChoice;
-	bool needExit = false;
+	//int userChoice;
+	//bool needExit = false;
 
-	while (!needExit) {
-		printMenu();
-		userChoice = getChoiceByUser();
+	//while (!needExit) {
+	//	printMenu();
+	//	userChoice = getChoiceByUser();
 
-		needExit = executeChoice(userChoice);
+	//	needExit = executeChoice(userChoice);
 
-	}
+	//	
+	//}
+	int first = getNumberByUser();
+	std::cout << "El usuario ha indicado el primer número como:" << first << "\n";
+
+	int second = getNumberByUser();
+	std::cout << "El usuario ha indicado el segundo número como:" << second << "\n";
 
 	return 0;
 }
