@@ -81,21 +81,24 @@ static void testSubstract() {
 	cout << "Prueba #3, la resta es: " << result3 << endl;
 }
 
-static bool executeChoice(int userChoice) {
-
+static bool executeChoice(int userChoice, int firstNumber, int secondNumber) {
+	int result = 0;
 	bool needExit = false;
 	switch (userChoice) {
 	case 1:
 		std::cout << "Ha seleccionado Sumar.\n";
-		// Llamada a función de suma (la que ya hicimos).
+		result = add(firstNumber, secondNumber);
+		std::cout << "El resultado de la suma es" << result << ".\n";
 		break;
 	case 2:
 		std::cout << "Ha seleccionado Restar.\n";
-		// Llamada a función de resta (la que ya hicimos).
+	    result = substract(firstNumber, secondNumber);
+		std::cout << "El resultado de la resta es" << result << ".\n";
 		break;
 	case 3:
 		std::cout << "Ha seleccionado Multiplicar.\n";
-		// Llamada a función de multiplicación (por implementar)
+		//result = multiply(firstNumber, secondNumber); //NOTE: Function not implemented
+		//std::cout << "El resultado de la multiplicacion es" << result << ".\n";
 		break;
 	case 4:
 		std::cout << "Ha seleccionado Dividir.\n";
@@ -116,24 +119,25 @@ static bool executeChoice(int userChoice) {
 	}
 	return needExit;
 }
+const int EXIT_OPTION = 6;
 
 int main() {
-	//int userChoice;
-	//bool needExit = false;
+	int userChoice;
+	bool needExit = false;
 
-	//while (!needExit) {
-	//	printMenu();
-	//	userChoice = getChoiceByUser();
+	while (!needExit) {
+		printMenu();
+		int firstNumber = 0;
+		int secondNumber = 0;
+		userChoice = getChoiceByUser();
 
-	//	needExit = executeChoice(userChoice);
-
-	//	
-	//}
-	int first = getNumberByUser();
-	std::cout << "El usuario ha indicado el primer número como:" << first << "\n";
-
-	int second = getNumberByUser();
-	std::cout << "El usuario ha indicado el segundo número como:" << second << "\n";
-
+		if (userChoice != EXIT_OPTION) {
+			firstNumber = getNumberByUser(); 
+			secondNumber = getNumberByUser();
+		} 
+		
+		needExit = executeChoice(userChoice,firstNumber, secondNumber); 
+	}
+	 
 	return 0;
 }
